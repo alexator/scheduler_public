@@ -14,10 +14,10 @@ var transporter = nodemailer.createTransport({
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
-    from: 'Bay Area Scheduler', // sender address
+    from: 'Scheduler', // sender address
     to: 'example@gmail.com',
     subject: 'Hello', // Subject line
-    text: 'Και με attachment...', // plaintext body
+    text: ' attachment...', // plaintext body
     // html: '<b>Hello world</b>' // html body
     attachments: [{path: './app/controllers/test.txt'}]
 };
