@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+	<body>
+	<% if(user) { %>
+		<% include ../views/partials/nav_bar %>
+		<div class="container">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="row centralise">
+				<h2>Dashboard</h2>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-3 centralise">
+					<div class="panel panel-default">
+    					<div class="panel-body">
+        					<h4>New Student Application</h4>
+							<a href="/student_registration_form" class="btn btn-success btn-fab btn-raised mdi-social-group-add"></a>
+    					</div>
+					</div>
+				</div>
+				<div class="col-md-3 centralise">
+					<div class="panel panel-default">
+    					<div class="panel-body">
+							<h4>View Registered Students</h4>
+							<a href="/students" class="btn btn-info btn-fab btn-raised mdi-action-view-list"></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 centralise">
+					<div class="panel panel-default">
+    					<div class="panel-body">
+							<h4>Schedule students</h4>
+							<a href="/scheduling" class="btn btn-warning btn-fab btn-raised mdi-action-today"></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 centralise">
+					<div class="panel panel-default">
+    					<div class="panel-body">
+							<h4>Tutors' Program</h4>
+							<a href="/program" class="btn btn-danger btn-fab btn-raised mdi-action-assignment-ind"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% } else { %>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 centralise">
+					<h1><%= greetings %></h1>
+					<br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 centralise">
+					<img src="/img/logo_small.png" alt="Scheduler" id="logo-small">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-3 centralise">
+					<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+				</div>
+				<div class="col-md-3 centralise">
+					<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+				</div>
+			</div>
+		</div>
+	<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadScripts %>
+	</body>
+</html>

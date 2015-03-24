@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+			<h1><%= title %></h1>
+			<br>
+			
+			<div>
+				<%= 'Name: ' + student.fullName %><br>
+				<% student.phone.forEach(function(phone, index) { %>
+					<%= 'Phone (' + phone.phoneType + '): ' + phone.number %><br>
+				<% }) %>
+				<%= 'Email: ' + student.email %><br>
+				<%= 'School: ' + school %><br>
+
+				<br><br>
+				
+				<span>Parent information:</span><br><br>
+				<% student.parent.forEach(function(parent, index) { %>
+					<%= 'Parent ' + (index+1) + ':' %><br>
+					<%= 'Name: ' + parent.firstName + ' ' + parent.lastName %><br>
+					<% parent.phone.forEach(function(phone, index) { %>
+						<%= 'Phone (' + phone.phoneType + '): ' + phone.number %><br>
+					<% }) %>
+					<%= 'Email: ' + parent.email %><br><br>
+				<% }) %>
+
+				<br><br>
+
+				<span>Subject request information:</span><br><br>
+				<% student.subjectRequest.forEach(function(subreq, index) { %>
+					<%= 'Subject request ' + (index+1) + ':' %><br><br>
+					<%= 'Subject: ' + subreq.subject %><br>
+					<%= 'Teacher: ' + subreq.teacher %><br>
+					<%= 'Exam date: ' + subreq.examDate %><br>
+					<%= 'Hours requested: ' + subreq.hoursRequested %><br>
+					<%= 'Requested tutor: ' + subreq.requestedTutor %><br><br>
+				<% }) %>
+
+			</div>
+
+			<div>
+				<%= 'Comments: ' + student.comments %>
+			</div>
+
+			<div>
+				<br><br>
+				<a href="/students/<%=student._id%>/dayRequests">View student's requests for each day</a><br>
+				<a href="/students/<%=student._id%>/dayRequests/add_new">Add new student's request for a specific day</a>
+			</div>		
+		</div>
+		<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

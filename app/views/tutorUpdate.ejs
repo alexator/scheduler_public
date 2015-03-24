@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+		<form action="/tutors/<%=tutor._id%>/update" method="post">
+			<div>
+			
+				<label>First name: </label>
+				<input type="text" name="firstName" value="<%= tutor.firstName %>" /> <br>
+				<label>Last name: </label>
+				<input type="text" name="lastName" value="<%= tutor.lastName %>" /> <br>
+				<label>Email: </label>
+				<input type="text" name="email" value="<%= tutor.email %>" />
+
+				<br><br><br>
+
+				<label>Availability</label><br><br>
+				<% tutor.availability.forEach (function (avail, index) { %>
+					<label>From: </label>
+					<input type="text" name="availability[<%= index %>][startTime]" value="<%= tutor.availability[index].startTime %>" /> <br>
+					<label>To: </label>
+					<input type="text" name="availability[<%= index %>][endTime]" value="<%= tutor.availability[index].startTime %>" />
+					<br><br>
+				<% }) %>
+
+				<br><br><br>
+
+				<label>Subjects taught</label> <br><br>
+				<% tutor.subjects.forEach (function (subject, index) { %>
+					<label>Subject <%= index + 1 %>:</label> <br>
+					<label>Name: </label>
+					<input type="text" name="subjects[<%=index%>][name]" value="<%= tutor.subjects[index].name %>" /> <br>
+					<label>School: </label>
+					<input type="text" name="subjects[<%=index%>][school]" value="<%= tutor.subjects[index].school ? tutor.subjects[index].school : '' %>" /> <br>
+					<label>Teacher: </label>
+					<input type="text" name="subjects[<%=index%>][teacher]" value="<%= tutor.subjects[index].teacher ? tutor.subjects[index].teacher : '' %>" />
+				<% }) %>
+
+				<br><br>
+
+			</div>			
+
+			<br><br>
+			<input type="submit" value="Update tutor details" />
+
+		</form>
+	</div>
+	<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

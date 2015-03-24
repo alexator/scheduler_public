@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- the title is an attribute that we can pass dynamically data from the controller  -->
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<br>
+
+		<div>
+			<%= 'Student name: ' + student.fullName %><br>
+			<%= 'Subject: ' + dayRequest.subject %>
+			<br><br>
+			<%= 'Hours requested: ' + dayRequest.hoursRequested %><br>
+			<%= 'Session: ' + dayRequest.session %><br><br>
+
+			<%= 'Student availability:' %><br>
+			<% dayRequest.availability.forEach( function (avail, index) { %>
+				<%= 'From ' + avail.startTime.toTimeString().substring(0,5) + ' to ' + avail.endTime.toTimeString().substring(0,5) %><br>
+			<% }) %><br>
+
+			<%= 'Backup Day:' %>
+			<%= dayRequest.backup %><br>
+			
+
+		</div>
+
+	</body>
+</html>

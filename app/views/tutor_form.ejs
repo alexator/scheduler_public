@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+			<form action="/tutors/add_new" method="post">
+
+				<div>
+					<label>First Name:</label>
+					<input type="text" name="firstName" value="Jesse" /> <br>
+					<label>Last Name:</label>
+					<input type="text" name="lastName" value="Pinkman" /> <br>
+					<label>Email:</label>
+					<input type="text" name="email" value="jesse@example.com" /> 
+
+					<br><br>
+				</div>
+
+				<div>
+					<label>Availability:</label>
+					<input type="date" name="[availability][0][startTime]" value="January 10, 2015"/>
+					<input type="date" name="[availability][0][endTime]" value="January 30, 2015"/> <br>
+				</div>
+
+				<div>
+					<label>Subject:</label>
+					<input type="text" name="[subjects][0][name]" value="Algebra I"/>
+					<input type="text" name="[subjects][0][school]" value="5490dc2a9e4bf69531aa9eab"/>
+					<input type="text" name="[subjects][0][teacher]" value="Wilks"/>
+				</div>
+
+				<br><br>
+				<input type="submit" value="Add new tutor" />
+
+		</form>
+	</div>
+	<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

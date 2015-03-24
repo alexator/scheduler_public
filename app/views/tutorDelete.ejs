@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+	</head>
+
+	<body>
+		<h1><%= title %></h1>
+		<br>
+
+		<form action="/tutors/<%=tutor._id%>/delete" method="post">
+			
+			<div>
+				<span><%= 'Delete tutor ' + tutor.fullName + ' ?'%></span>
+			</div>
+			<input type="submit" value="Delete" />
+
+		</form>
+
+	</body>
+</html>

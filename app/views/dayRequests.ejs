@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- the title is an attribute that we can pass dynamically data from the controller  -->
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<br>
+
+		<%=student.fullName%><br><br>
+		<% dayRequests.forEach( function(dayRequest, index) { %>
+			<% date = dayRequest.availability[0].startTime.toDateString() %>
+			<%= date.substring(0,3) + ", " + date.substring(3) %>
+
+			<%= '     |||     ' + dayRequest.subject + '  ('%>
+			<% dayRequest.availability.forEach( function(avail, index) { %>
+				<% if (index!=0) { %> <%=", "%> <% } %>
+				<%= avail.startTime.toTimeString().substring(0,5) + " - " + avail.endTime.toTimeString().substring(0,5) %>
+			<% }) %>
+			<%= '), '%>
+			<a href="/students/<%= student.id %>/dayRequests/<%=dayRequest.id%>"> View </a>
+			<a href="/students/<%= student.id %>/dayRequests/<%=dayRequest.id%>/update"> Update </a>
+			<a href="/students/<%= student.id %>/dayRequests/<%=dayRequest.id%>/delete"> Delete </a>
+			<br>
+		<% }) %>
+
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<br>
+		<a href="/signout">Sign out</a><br><br>
+		
+		<form action="/students/<%=student._id%>/dayRequests/add_new" method="post">
+			<div>
+				<label>Student:</label>
+				<input type="text" name="student" value="<%=student._id%>" />
+			</div>
+			<div>
+				<label>Subject:</label>
+				<input type="text" name="subject" value="Algebra II" />
+			</div>
+			<div>
+				<label>Hours Requested:</label>
+				<input type="number" name="hoursRequested" value="2" />
+			</div>
+			<div>
+				<label>Availability:</label>
+				<input type="date" name="availability[0][startTime]" value="January 21, 2015"/>
+				<input type="date" name="availability[0][endTime]" value="January 22, 2015"/>
+			</div>
+			<div>
+				<label>Backup Day:</label>
+				<input type="date" name="backupDays" value="January 23, 2015" />
+			</div>
+			<div>
+				<label>Session:</label>
+				<input type="text" name="session" value="None" />
+			</div>
+			<input type="submit" value="Add new day request" />
+		</form>
+
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+		<h1><%= title %></h1>
+		<br>
+		
+		<div>
+			<%= 'Name: ' + tutor.firstName + (tutor.lastName ? ( ' ' + tutor.lastName) : '') %> <br>
+			<%= tutor.email ? ('Email: ' + tutor.email) : '' %>
+
+			<br><br>
+
+			<% if (tutor.availability.length > 0) { %>
+				<span>Availability:</span><br><br>
+				<% tutor.availability.forEach ( function (avail, index) { %>
+					<%= 'From: ' + avail.startTime + 'to' + avail.endTime %><br>
+				<% }) %>
+				<br><br><br>
+			<% } %>
+			
+			<% if (tutor.subjects.length > 0) { %>
+				<span>Subjects taught:</span><br><br>
+				<% tutor.subjects.forEach ( function (subject, index) { %>
+					<%= subject.name %> <br>
+					<%= subject.school %> <br>
+					<%= subject.teacher %> <br>
+				<% }) %>
+			<% } %>
+
+			<br><br>
+		</div>
+		</div>
+		<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+	<body>
+	<% if(user) { %>
+		<% include ../views/partials/nav_bar %>
+		<div class="container">
+			<form  action="/student_registration_form" method="post">
+    			<fieldset>
+        			<legend>New Student</legend>
+					<div class="panel panel-default">
+						<div class="panel-heading">Student's Information</div>
+						<div class="panel-body">
+							<div id="student_info_section">
+								<div id="info">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-6">
+				        						<h3>Personal Information</h3>
+				        					</div>
+				        				</div>
+				        			</div>
+				        			<div class="form-group">
+				        				<div class="row">
+											<div class="col-md-4">
+												<label for="studentFirstName">First Name</label>
+												<input type="text" id="studentFirstName" class="form-control" placeholder="e.g. John" name="firstName" required>
+											</div>
+											<div class="col-md-4">
+												<label for="studentLastName">Last Name</label>
+					        					<input type="text" id="studentLastName" class="form-control" placeholder="e.g. Smith" name="lastName" required>
+											</div>
+											<div class="col-md-4">
+												<label for="studentEmail">Email</label>
+												<input type="text" id="studentEmail" class="form-control" placeholder="e.g. jsmith@example.com" name="email">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="student_phone_section">
+				        		<div id="phone_numbers">
+				        			<div class="form-group">
+				        				<div class="row">
+				        					<div class="col-md-2">
+				        						<h3>Phones</h3>
+				        					</div>
+				        					<div class="col-md-5">
+				        						<div class="vmidlle">
+				        							<a class="btn btn-flat btn-primary" id="add_phone"><span class="mdi-content-add" aria-hidden="true"></span> Add a second phone</a>
+				        						</div>
+				        					</div>
+				        				</div>
+				        			</div>
+				        			<div class="form-group">
+				        				<div class="row">
+					        				<div class="col-md-5">
+					        					<label for="phone_one_number">Number</label>
+												<input type="text" id="phone_one_number" class="form-control" placeholder="e.g. 2109238456" name="phones[0][number]">
+					        				</div>
+			  								<div class="col-md-5">
+			  									<label for="phone_one_type">Type</label>
+												<select class="form-control" id="phone_one_type" name="phones[0][type]">
+													<option value="">Please select a phone type</option>
+													<% studentPhoneTypes.forEach (function (type, index) { %>
+														<option><%=type%></option>
+													<% }) %>
+												</select>
+			  								</div>
+				        				</div>
+				        			</div>
+				        		</div>
+		        			</div>
+		        			<div id="student_school">
+								<div id="school">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-6">
+				        						<h3>School</h3>
+				        					</div>
+				        				</div>
+				        			</div>
+				        			<div class="form-group">
+				        				<div class="row">
+											<div class="col-md-4">
+												<label for="studentSchool">School</label>
+												<select class="form-control" id="studentSchool" name="school" required>
+								                    <option value="">Please select a School</option>
+								                    <% schools.forEach (function (school, index) { %>
+								                    	<option value="<%=school.id%>" ><%= school.name %></option>
+								                    <% }) %>
+								                </select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+		        			<div id="student_parent_section">
+		        				<div id="parents">
+		        					<div class="form-group">
+										<div class="row">
+											<div class="col-md-2">
+												<h3>Parents Information</h3>
+											</div>
+											<div class="col-md-5">
+												<div class="vmidlle">
+													<a class="btn btn-flat btn-primary" id="add_parent"><span class="mdi-content-add" aria-hidden="true"></span>Add a second parent</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="first_parent">
+										<div class="form-group">
+											<h4>Parent One</h4>
+										</div>
+										<div id="first_parent_info_section">
+											<div class="form-group">
+												<div class="row">
+													<div class="col-md-4">
+														<label for="parent_one_first_name">First Name</label>
+														<input type="text" id="parent_one_first_name" class="form-control" placeholder="e.g. John" name="parents[0][firstName]">
+													</div>
+													<div class="col-md-4">
+														<label for="parent_one_last_name">Last Name</label>
+														<input type="text" id="parent_one_last_name" class="form-control" placeholder="e.g. Smith" name="parents[0][lastName]">
+													</div>
+													<div class="col-md-4">
+														<label for="parent_one_email">Email</label>
+														<input type="text" id="parent_one_email" class="form-control" placeholder="e.g. jsmith@example.com" name="parents[0][email]">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="first_parent_phone_section">
+											<div id="first_parent_phone_numbers">
+												<div class="form-group">
+													<div class="row">
+														<div class="col-md-2">
+															<h4>Phones</h4>
+														</div>
+														<div class="col-md-5">
+															<div class="vmidlle">
+																<a class="btn btn-flat btn-primary" id="first_parent_add_phone"><span class="mdi-content-add" aria-hidden="true"></span> Add another phone</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="row">
+														<div class="col-md-5">
+															<label for="first_parent_phone_one_number">Number</label>
+															<input type="text" id="first_parent_phone_one_number" class="form-control" placeholder="e.g. 2109238456" name="parents[0][phone][0][number]">
+														</div>
+														<div class="col-md-5">
+															<label for="first_parent_phone_one_type">Type</label>
+															<select class="form-control" id="first_parent_phone_one_type" name="parents[0][phone][0][type]">
+																<option>Please select a phone type</option>
+																<% parentPhoneTypes.forEach(function(type,index) { %>
+																	<option><%=type%></option>
+																<% }) %>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+		        				</div>	
+		        			</div>
+						</div>
+					</div>
+				</fieldset>
+    			<button class="btn btn-primary btn-lg" type="submit">Submit</button>
+			</form>
+		</div>
+		<% } else { %>
+		<div class="container">
+			<h1>Oops... only registered users could use this feature</h1>
+			<h2>Please choose one of the below options</h2>
+			<div class="row">
+				<div class="col-md-6 rightify">
+					<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+				</div>
+				<div class="col-md-6 leftify">
+					<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+				</div>
+			</div>
+		</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadScripts %>
+	</body>
+</html>	

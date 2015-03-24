@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+		<h1><%= title %></h1>
+		<br>
+
+		<div>
+			<% tutors.forEach (function (tutor, index) { %>
+				<%= tutor.firstName + (tutor.lastName ? (' ' + tutor.lastName) : '') %>
+				<a href="/tutors/<%=tutor._id%>">View</a>
+				<a href="/tutors/<%=tutor._id%>/update">Update</a>
+				<a href="/tutors/<%=tutor._id%>/delete">Delete</a>
+				<br>
+			<% }) %>
+			<br><br>
+
+			<a href="/tutors/add_new">Add a new tutor</a> <br><br>
+		</div>
+	</div>
+	<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

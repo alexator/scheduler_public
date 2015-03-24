@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+	<body>
+	<div class="school" id="<%=school._id%>" style="display:none"></div>
+	<% if(user) { %>
+		<% include ../views/partials/nav_bar %>
+		<div class="container">
+			<form  action="/registration_form" method="post">
+				<div style="display:none">
+					<input type="text" name="student" value="<%=student%>" />
+				</div>
+    			<fieldset>
+        			<legend>New Application</legend>
+
+        			<!-- SUBJECT REQUESTS -->
+					<div class="panel panel-default">
+    					<div class="panel-heading">Requested Subjects</div>
+    					<div class="panel-body">
+    						<div id="subject_requests_section">
+								<div id="request">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-2">
+				        						<h3>Requests</h3>
+				        					</div>
+				        					<div class="col-md-5">
+				        						<div class="vmidlle">
+				        							<a class="btn btn-flat btn-primary" id="add_request"><span class="mdi-content-add" aria-hidden="true"></span> Add another request</a>
+				        						</div>
+				        					</div>
+				        				</div>
+				        			</div>
+				        			<div class="form-group">
+				        				<div class="row" id="req_container">
+
+				        					<!-- FIRST REQUEST -->
+											<div id="req-0">
+												<div class="col-md-4">
+													<div id="req_section">
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<h4>Request</h4>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="subjectName-0">Subject</label>
+															<select class="form-control subjectMenu" id="subjectName-0" 
+															name="subjectRequest[0][subject]" required>
+											                    <option value="0">Please select a subject</option>
+											                    <% school.subjects.forEach(function (subject,index) { %>
+											                    	<option><%=subject.name%></option>
+											                    <% }) %>
+											                </select>
+										            	</div>
+										            	<div class="form-group">
+											                <label for="teacherName-0">Teacher</label>
+															<select class="form-control teacherMenu" id="teacherName-0" name="subjectRequest[0][teacher]" required>
+											                    <option value="0">Please select a teacher</option>
+											                </select>
+											            </div>
+											            <div class="form-group">
+										                	<label for="finalDate-0">Date of Final</label>
+															<select id="finalDate-0" class="form-control" name="subjectRequest[0][examDate]">
+																<option>January 19, 2015</option>
+																<option>January 20, 2015</option>
+																<option>January 21, 2015</option>
+																<option>January 22, 2015</option>
+																<option>January 23, 2015</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="hrsRequ-0">Total # of hrs requested</label>
+															<input type="number" id="hrsRequ-0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="subjectRequest[0][hoursRequested]" required/>
+														</div>
+														<div class="form-group">
+											                <label for="requestedTutor-0">Tutor</label>
+															<select class="form-control" id="requestedTutor-0" name="subjectRequest[0][requestedTutor]" required>
+											                    <option>I don't have a regular tutor</option>
+											                    <option>I prefer my regular tutor</option>
+											                    <option>I prefer another tutor</option>
+											                </select>
+											            </div>
+													</div>
+												</div>
+											</div>
+
+											<!-- SECOND REQUEST -->
+											<div id="req-1">
+												<div class="col-md-4">
+													<div id="req_section">
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<h4>Request</h4>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="subjectName-1">Subject</label>
+															<select class="form-control subjectMenu" id="subjectName-1" name="subjectRequest[1][subject]" required>
+											                    <option value="0">Please select a subject</option>
+											                    <% school.subjects.forEach(function (subject,index) { %>
+											                    	<option><%=subject.name%></option>
+											                    <% }) %>
+											                </select>
+										            	</div>
+										            	<div class="form-group">
+											                <label for="teacherName-1">Teacher</label>
+															<select class="form-control teacherMenu" id="teacherName-1" name="subjectRequest[1][teacher]" required>
+											                    <option value="0">Please select a teacher</option>
+											                </select>
+											            </div>
+											            <div class="form-group">
+										                	<label for="finalDate-1">Date of Final</label>
+															<select id="finalDate-1" class="form-control" name="subjectRequest[1][examDate]">
+																<option>January 19, 2015</option>
+																<option>January 20, 2015</option>
+																<option>January 21, 2015</option>
+																<option>January 22, 2015</option>
+																<option>January 23, 2015</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="hrsRequ-1">Total # of hrs requested</label>
+															<input type="number" id="hrsRequ-1" class="form-control" placeholder="e.g. 2" max=9 min=1 name="subjectRequest[1][hoursRequested]" />
+														</div>
+														<div class="form-group">
+											                <label for="requestedTutor-1">Tutor</label>
+															<select class="form-control" id="requestedTutor-1" name="subjectRequest[1][requestedTutor]" required>
+											                    <option>I don't have a regular tutor</option>
+											                    <option>I prefer my regular tutor</option>
+											                    <option>I prefer another tutor</option>
+											                </select>
+											            </div>
+													</div>
+												</div>
+											</div>
+
+											<!-- THIRD REQUEST -->
+											<div id="req-2">
+												<div class="col-md-4">
+													<div id="req_section">
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<h4>Request</h4>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="subjectName-2">Subject</label>
+															<select class="form-control subjectMenu" id="subjectName-2" name="subjectRequest[2][subject]" required>
+											                    <option value="0">Please select a subject</option>
+											                    <% school.subjects.forEach(function (subject,index) { %>
+											                    	<option><%=subject.name%></option>
+											                    <% }) %>
+ 											                </select>
+										            	</div>
+										            	<div class="form-group">
+											                <label for="teacherName-2">Teacher</label>
+															<select class="form-control teacherMenu" id="teacherName-2" name="subjectRequest[2][teacher]" required>
+											                    <option value="0">Please select a teacher</option>
+											                </select>
+											            </div>
+											            <div class="form-group">
+										                	<label for="finalDate-2">Date of Final</label>
+															<select id="finalDate-2" class="form-control" name="subjectRequest[2][examDate]">
+																<option>January 19, 2015</option>
+																<option>January 20, 2015</option>
+																<option>January 21, 2015</option>
+																<option>January 22, 2015</option>
+																<option>January 23, 2015</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="hrsRequ-2">Total # of hrs requested</label>
+															<input type="number" id="hrsRequ-2" class="form-control" placeholder="e.g. 2" max=9 min=1 name="subjectRequest[2][hoursRequested]" />
+														</div>
+														<div class="form-group">
+											                <label for="requestedTutor-2">Tutor</label>
+															<select class="form-control" id="requestedTutor-2" name="subjectRequest[2][requestedTutor]" required>
+											                    <option>I don't have a regular tutor</option>
+											                    <option>I prefer my regular tutor</option>
+											                    <option>I prefer another tutor</option>
+											                </select>
+											            </div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+    					</div>
+					</div>
+
+					<!-- DAILY REQUESTS -->
+					<div class="panel panel-default">
+    					<div class="panel-heading">Daily Requests</div>
+    					<div class="panel-body">
+    						<div id="daily_requests_section">
+								<div id="d_requests">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-2">
+				        						<h3>Requests</h3>
+				        					</div>
+										</div>
+									</div>
+		        					<div class="form-group">
+			        					<div class="row" id="day-0">
+			        						<div class="col-md-3" id="general_comments">
+			        							<div class="requests">
+			        								<div class="form-group">
+														<div class="row header">
+															<div class="col-md-12">
+																<h5>Comments</h5>
+															</div>
+														</div>
+													</div>
+				        							<div class="form-group">
+														<label for="general_comment">Comments</label>
+														<textarea id="general_comment" class="form-control" placeholder="eg. List of English Books, Guidelines etc." name="comments" rows="5"></textarea>
+				        							</div>
+			        							</div>
+			        						</div>
+
+			        						<!-- FRIDAY -->
+			        						<div class="col-md-3" id="req-d0-r0">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Friday, January 16th</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-0" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-0">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d0-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d0-r0" name="dayRequests[0][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d0-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d0-r0" class="form-control" placeholder="e.g. 2" name="dayRequests[0][sub][0][hoursRequested]" max=9 min=1 >
+																</div>
+																<div class="form-group">
+																	<label for="session-d0-r0">Session</label>
+																	<select class="form-control" id="session-d0-r0" name="dayRequests[0][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>	
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-0" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-0">
+															<div class="sub">
+																<div class="row" id="d0-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d0-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d0-r0-av0" name="dayRequests[0][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,16,15,30">3.30 pm</option>
+														                    <option value="2015,0,16,16,00">4.00 pm</option>
+														                    <option value="2015,0,16,16,30">4.30 pm</option>
+														                    <option value="2015,0,16,17,00">5.00 pm</option>
+														                    <option value="2015,0,16,17,30">5.30 pm</option>
+														                    <option value="2015,0,16,18,00">6.00 pm</option>
+														                    <option value="2015,0,16,18,30">6.30 pm</option>
+														                    <option value="2015,0,16,19,00">7.00 pm</option>
+														                    <option value="2015,0,16,19,30">7.30 pm</option>
+														                    <option value="2015,0,16,20,00">8.00 pm</option>
+														                    <option value="2015,0,16,20,30">8.30 pm</option>
+														                    <option value="2015,0,16,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d0-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d0-r0-av0" name="dayRequests[0][availability][0][endTime]" >
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,16,16,30">4.30 pm</option>
+														                    <option value="2015,0,16,17,00">5.00 pm</option>
+														                    <option value="2015,0,16,17,30">5.30 pm</option>
+														                    <option value="2015,0,16,18,00">6.00 pm</option>
+														                    <option value="2015,0,16,18,30">6.30 pm</option>
+														                    <option value="2015,0,16,19,00">7.00 pm</option>
+														                    <option value="2015,0,16,19,30">7.30 pm</option>
+														                    <option value="2015,0,16,20,00">8.00 pm</option>
+														                    <option value="2015,0,16,20,30">8.30 pm</option>
+														                    <option value="2015,0,16,21,00">9.00 pm</option>
+														                    <option value="2015,0,16,21,30">9.30 pm</option>
+														                    <option value="2015,0,16,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d0-r0">Backup Day</label>
+																	<select name="dayRequests[0][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- SATURDAY -->
+											<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Saturday, January 17th</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-1" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-1">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d1-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d1-r0" name="dayRequests[1][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d1-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d1-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[1][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d1-r0">Session</label>
+																	<select class="form-control" id="session-d1-r0" name="dayRequests[1][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-1" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-1">
+															<div class="sub">
+																<div class="row" id="d1-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d1-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d1-r0-av0" name="dayRequests[1][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,17,10,00">10.00 am</option>
+														                    <option value="2015,0,17,10,30">10.30 am</option>
+														                    <option value="2015,0,17,11,00">11.00 am</option>
+														                    <option value="2015,0,17,11,30">11.30 am</option>
+														                    <option value="2015,0,17,12,00">12.00 pm</option>
+														                    <option value="2015,0,17,12,30">12.30 pm</option>
+														                    <option value="2015,0,17,13,00">1.00 pm</option>
+														                    <option value="2015,0,17,13,30">1.30 pm</option>
+														                    <option value="2015,0,17,14,00">2.00 pm</option>
+														                    <option value="2015,0,17,14,30">2.30 pm</option>
+														                    <option value="2015,0,17,15,00">3.00 pm</option>
+														                    <option value="2015,0,17,15,30">3.30 pm</option>
+														                    <option value="2015,0,17,16,00">4.00 pm</option>
+														                    <option value="2015,0,17,16,30">4.30 pm</option>
+														                    <option value="2015,0,17,17,00">5.00 pm</option>
+														                    <option value="2015,0,17,17,30">5.30 pm</option>
+														                    <option value="2015,0,17,18,00">6.00 pm</option>
+														                    <option value="2015,0,17,18,30">6.30 pm</option>
+														                    <option value="2015,0,17,19,00">7.00 pm</option>
+														                    <option value="2015,0,17,19,30">7.30 pm</option>
+														                    <option value="2015,0,17,20,00">8.00 pm</option>
+														                    <option value="2015,0,17,20,30">8.30 pm</option>
+														                    <option value="2015,0,17,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d1-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d1-r0-av0" name="dayRequests[1][availability][0][endTime]" >
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,17,11,00">11.00 am</option>
+														                    <option value="2015,0,17,11,30">11.30 am</option>
+														                    <option value="2015,0,17,12,00">12.00 pm</option>
+														                    <option value="2015,0,17,12,30">12.30 pm</option>
+														                    <option value="2015,0,17,13,00">1.00 pm</option>
+														                    <option value="2015,0,17,13,30">1.30 pm</option>
+														                    <option value="2015,0,17,14,00">2.00 pm</option>
+														                    <option value="2015,0,17,14,30">2.30 pm</option>
+														                    <option value="2015,0,17,15,00">3.00 pm</option>
+														                    <option value="2015,0,17,15,30">3.30 pm</option>
+														                    <option value="2015,0,17,16,00">4.00 pm</option>
+														                    <option value="2015,0,17,16,30">4.30 pm</option>
+														                    <option value="2015,0,17,17,00">5.00 pm</option>
+														                    <option value="2015,0,17,17,30">5.30 pm</option>
+														                    <option value="2015,0,17,18,00">6.00 pm</option>
+														                    <option value="2015,0,17,18,30">6.30 pm</option>
+														                    <option value="2015,0,17,19,00">7.00 pm</option>
+														                    <option value="2015,0,17,19,30">7.30 pm</option>
+														                    <option value="2015,0,17,20,00">8.00 pm</option>
+														                    <option value="2015,0,17,20,30">8.30 pm</option>
+														                    <option value="2015,0,17,21,00">9.00 pm</option>
+														                    <option value="2015,0,17,21,30">9.30 pm</option>
+														                    <option value="2015,0,17,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d1-r0">Backup Day</label>
+																	<select name="dayRequests[1][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- SUNDAY -->
+											<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Sunday, January 18th</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-2" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-2">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d2-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d2-r0" name="dayRequests[2][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d2-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d2-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[2][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d2-r0">Session</label>
+																	<select class="form-control" id="session-d2-r0" name="dayRequests[2][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-2" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-2">
+															<div class="sub">
+																<div class="row" id="d2-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d2-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d2-r0-av0" name="dayRequests[2][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,18,10,00">10.00 am</option>
+														                    <option value="2015,0,18,10,30">10.30 am</option>
+														                    <option value="2015,0,18,11,00">11.00 am</option>
+														                    <option value="2015,0,18,11,30">11.30 am</option>
+														                    <option value="2015,0,18,12,00">12.00 pm</option>
+														                    <option value="2015,0,18,12,30">12.30 pm</option>
+														                    <option value="2015,0,18,13,00">1.00 pm</option>
+														                    <option value="2015,0,18,13,30">1.30 pm</option>
+														                    <option value="2015,0,18,14,00">2.00 pm</option>
+														                    <option value="2015,0,18,14,30">2.30 pm</option>
+														                    <option value="2015,0,18,15,00">3.00 pm</option>
+														                    <option value="2015,0,18,15,30">3.30 pm</option>
+														                    <option value="2015,0,18,16,00">4.00 pm</option>
+														                    <option value="2015,0,18,16,30">4.30 pm</option>
+														                    <option value="2015,0,18,17,00">5.00 pm</option>
+														                    <option value="2015,0,18,17,30">5.30 pm</option>
+														                    <option value="2015,0,18,18,00">6.00 pm</option>
+														                    <option value="2015,0,18,18,30">6.30 pm</option>
+														                    <option value="2015,0,18,19,00">7.00 pm</option>
+														                    <option value="2015,0,18,19,30">7.30 pm</option>
+														                    <option value="2015,0,18,20,00">8.00 pm</option>
+														                    <option value="2015,0,18,20,30">8.30 pm</option>
+														                    <option value="2015,0,18,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d2-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d2-r0-av0" name="dayRequests[2][availability][0][endTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,18,11,00">11.00 am</option>
+														                    <option value="2015,0,18,11,30">11.30 am</option>
+														                    <option value="2015,0,18,12,00">12.00 pm</option>
+														                    <option value="2015,0,18,12,30">12.30 pm</option>
+														                    <option value="2015,0,18,13,00">1.00 pm</option>
+														                    <option value="2015,0,18,13,30">1.30 pm</option>
+														                    <option value="2015,0,18,14,00">2.00 pm</option>
+														                    <option value="2015,0,18,14,30">2.30 pm</option>
+														                    <option value="2015,0,18,15,00">3.00 pm</option>
+														                    <option value="2015,0,18,15,30">3.30 pm</option>
+														                    <option value="2015,0,18,16,00">4.00 pm</option>
+														                    <option value="2015,0,18,16,30">4.30 pm</option>
+														                    <option value="2015,0,18,17,00">5.00 pm</option>
+														                    <option value="2015,0,18,17,30">5.30 pm</option>
+														                    <option value="2015,0,18,18,00">6.00 pm</option>
+														                    <option value="2015,0,18,18,30">6.30 pm</option>
+														                    <option value="2015,0,18,19,00">7.00 pm</option>
+														                    <option value="2015,0,18,19,30">7.30 pm</option>
+														                    <option value="2015,0,18,20,00">8.00 pm</option>
+														                    <option value="2015,0,18,20,30">8.30 pm</option>
+														                    <option value="2015,0,18,21,00">9.00 pm</option>
+														                    <option value="2015,0,18,21,30">9.30 pm</option>
+														                    <option value="2015,0,18,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d2-r0">Backup Day</label>
+																	<select name="dayRequests[2][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+		        					</div>
+
+		        					<div class="form-group">
+			        					<div class="row" id="day-1">
+			        						<!-- MONDAY -->
+			        						<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Monday, January 19th</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-3" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-3">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d3-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d3-r0" name="dayRequests[3][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d3-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d3-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[3][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d3-r0">Session</label>
+																	<select class="form-control" id="session-d3-r0" name="dayRequests[3][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-3" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-3">
+															<div class="sub">
+																<div class="row" id="d3-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d3-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d3-r0-av0" name="dayRequests[3][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,19,10,00">10.00 am</option>
+														                    <option value="2015,0,19,10,30">10.30 am</option>
+														                    <option value="2015,0,19,11,00">11.00 am</option>
+														                    <option value="2015,0,19,11,30">11.30 am</option>
+														                    <option value="2015,0,19,12,00">12.00 pm</option>
+														                    <option value="2015,0,19,12,30">12.30 pm</option>
+														                    <option value="2015,0,19,13,00">1.00 pm</option>
+														                    <option value="2015,0,19,13,30">1.30 pm</option>
+														                    <option value="2015,0,19,14,00">2.00 pm</option>
+														                    <option value="2015,0,19,14,30">2.30 pm</option>
+														                    <option value="2015,0,19,15,00">3.00 pm</option>
+														                    <option value="2015,0,19,15,30">3.30 pm</option>
+														                    <option value="2015,0,19,16,00">4.00 pm</option>
+														                    <option value="2015,0,19,16,30">4.30 pm</option>
+														                    <option value="2015,0,19,17,00">5.00 pm</option>
+														                    <option value="2015,0,19,17,30">5.30 pm</option>
+														                    <option value="2015,0,19,18,00">6.00 pm</option>
+														                    <option value="2015,0,19,18,30">6.30 pm</option>
+														                    <option value="2015,0,19,19,00">7.00 pm</option>
+														                    <option value="2015,0,19,19,30">7.30 pm</option>
+														                    <option value="2015,0,19,20,00">8.00 pm</option>
+														                    <option value="2015,0,19,20,30">8.30 pm</option>
+														                    <option value="2015,0,19,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d3-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d3-r0-av0" name="dayRequests[3][availability][0][endTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,19,11,00">11.00 am</option>
+														                    <option value="2015,0,19,11,30">11.30 am</option>
+														                    <option value="2015,0,19,12,00">12.00 pm</option>
+														                    <option value="2015,0,19,12,30">12.30 pm</option>
+														                    <option value="2015,0,19,13,00">1.00 pm</option>
+														                    <option value="2015,0,19,13,30">1.30 pm</option>
+														                    <option value="2015,0,19,14,00">2.00 pm</option>
+														                    <option value="2015,0,19,14,30">2.30 pm</option>
+														                    <option value="2015,0,19,15,00">3.00 pm</option>
+														                    <option value="2015,0,19,15,30">3.30 pm</option>
+														                    <option value="2015,0,19,16,00">4.00 pm</option>
+														                    <option value="2015,0,19,16,30">4.30 pm</option>
+														                    <option value="2015,0,19,17,00">5.00 pm</option>
+														                    <option value="2015,0,19,17,30">5.30 pm</option>
+														                    <option value="2015,0,19,18,00">6.00 pm</option>
+														                    <option value="2015,0,19,18,30">6.30 pm</option>
+														                    <option value="2015,0,19,19,00">7.00 pm</option>
+														                    <option value="2015,0,19,19,30">7.30 pm</option>
+														                    <option value="2015,0,19,20,00">8.00 pm</option>
+														                    <option value="2015,0,19,20,30">8.30 pm</option>
+														                    <option value="2015,0,19,21,00">9.00 pm</option>
+														                    <option value="2015,0,19,21,30">9.30 pm</option>
+														                    <option value="2015,0,19,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d3-r0">Backup Day</label>
+																	<select name="dayRequests[3][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- TUESDAY -->
+											<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Tuesday, January 20th</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-4" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-4">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d4-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d4-r0" name="dayRequests[4][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d4-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d4-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[4][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d4-r0">Session</label>
+																	<select class="form-control" id="session-d4-r0" name="dayRequests[4][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-4" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-4">
+															<div class="sub">
+																<div class="row" id="d4-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d4-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d4-r0-av0" name="dayRequests[4][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,20,15,30">3.30 pm</option>
+														                    <option value="2015,0,20,16,00">4.00 pm</option>
+														                    <option value="2015,0,20,16,30">4.30 pm</option>
+														                    <option value="2015,0,20,17,00">5.00 pm</option>
+														                    <option value="2015,0,20,17,30">5.30 pm</option>
+														                    <option value="2015,0,20,18,00">6.00 pm</option>
+														                    <option value="2015,0,20,18,30">6.30 pm</option>
+														                    <option value="2015,0,20,19,00">7.00 pm</option>
+														                    <option value="2015,0,20,19,30">7.30 pm</option>
+														                    <option value="2015,0,20,20,00">8.00 pm</option>
+														                    <option value="2015,0,20,20,30">8.30 pm</option>
+														                    <option value="2015,0,20,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d4-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d4-r0-av0" name="dayRequests[4][availability][0][endTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,20,16,30">4.30 pm</option>
+														                    <option value="2015,0,20,17,00">5.00 pm</option>
+														                    <option value="2015,0,20,17,30">5.30 pm</option>
+														                    <option value="2015,0,20,18,00">6.00 pm</option>
+														                    <option value="2015,0,20,18,30">6.30 pm</option>
+														                    <option value="2015,0,20,19,00">7.00 pm</option>
+														                    <option value="2015,0,20,19,30">7.30 pm</option>
+														                    <option value="2015,0,20,20,00">8.00 pm</option>
+														                    <option value="2015,0,20,20,30">8.30 pm</option>
+														                    <option value="2015,0,20,21,00">9.00 pm</option>
+														                    <option value="2015,0,20,21,30">9.30 pm</option>
+														                    <option value="2015,0,20,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d4-r0">Backup Day</label>
+																	<select name="dayRequests[4][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- WEDNESDAY -->
+											<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Wednesday, January 21st</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-5" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-5">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d5-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d5-r0" name="dayRequests[5][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d5-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d5-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[5][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d5-r0">Session</label>
+																	<select class="form-control" id="session-d5-r0" name="dayRequests[5][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-5" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-5">
+															<div class="sub">
+																<div class="row" id="d5-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d5-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d5-r0-av0" name="dayRequests[5][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,21,13,30">1.30 pm</option>
+														                    <option value="2015,0,21,14,00">2.00 pm</option>
+														                    <option value="2015,0,21,14,30">2.30 pm</option>
+														                    <option value="2015,0,21,15,00">3.00 pm</option>
+														                    <option value="2015,0,21,15,30">3.30 pm</option>
+														                    <option value="2015,0,21,16,00">4.00 pm</option>
+														                    <option value="2015,0,21,16,30">4.30 pm</option>
+														                    <option value="2015,0,21,17,00">5.00 pm</option>
+														                    <option value="2015,0,21,17,30">5.30 pm</option>
+														                    <option value="2015,0,21,18,00">6.00 pm</option>
+														                    <option value="2015,0,21,18,30">6.30 pm</option>
+														                    <option value="2015,0,21,19,00">7.00 pm</option>
+														                    <option value="2015,0,21,19,30">7.30 pm</option>
+														                    <option value="2015,0,21,20,00">8.00 pm</option>
+														                    <option value="2015,0,21,20,30">8.30 pm</option>
+														                    <option value="2015,0,21,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d5-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d5-r0-av0" name="dayRequests[5][availability][0][endTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,21,14,30">2.30 pm</option>
+														                    <option value="2015,0,21,15,00">3.00 pm</option>
+														                    <option value="2015,0,21,15,30">3.30 pm</option>
+														                    <option value="2015,0,21,16,00">4.00 pm</option>
+														                    <option value="2015,0,21,16,30">4.30 pm</option>
+														                    <option value="2015,0,21,17,00">5.00 pm</option>
+														                    <option value="2015,0,21,17,30">5.30 pm</option>
+														                    <option value="2015,0,21,18,00">6.00 pm</option>
+														                    <option value="2015,0,21,18,30">6.30 pm</option>
+														                    <option value="2015,0,21,19,00">7.00 pm</option>
+														                    <option value="2015,0,21,19,30">7.30 pm</option>
+														                    <option value="2015,0,21,20,00">8.00 pm</option>
+														                    <option value="2015,0,21,20,30">8.30 pm</option>
+														                    <option value="2015,0,21,21,00">9.00 pm</option>
+														                    <option value="2015,0,21,21,30">9.30 pm</option>
+														                    <option value="2015,0,21,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d5-r0">Backup Day</label>
+																	<select name="dayRequests[5][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!-- THURSDAY -->
+											<div class="col-md-3">
+			        							<div class="requests">
+													<div id="d-req_section">
+														<div class="form-group">
+															<div class="row header">
+																<div class="col-md-12">
+																	<h5>Thursday, January 22nd</h5>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Subjects</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDaily" id="addDaily-6" ><span class="mdi-content-add" aria-hidden="true"></span>Add Subject</a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailySubject-6">
+															<div class="sub">
+																<div class="form-group">
+																	<label for="subjectName-d6-r0">Subject</label>
+																	<select class="form-control daySubjectMenu" id="subjectName-d6-r0" name="dayRequests[6][sub][0][subject]">
+																		<option value="0">Please select a subject</option>
+													                </select>
+												            	</div>
+																<div class="form-group">
+																	<label for="hrsNeeded-d6-r0">Hours Needed</label>
+																	<input type="number" id="hrsNeeded-d6-r0" class="form-control" placeholder="e.g. 2" max=9 min=1 name="dayRequests[6][sub][0][hoursRequested]">
+																</div>
+																<div class="form-group">
+																	<label for="session-d6-r0">Session</label>
+																	<select class="form-control" id="session-d6-r0" name="dayRequests[6][sub][0][session]">
+													                    <option>Session 1 only</option>
+													                    <option>Session 2 only</option>
+													                    <option>Either</option>
+													                    <option>Not applicable</option>
+													                </select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label>Student availability</label>
+																</div>
+																<div class="col-md-6">
+																	<div class="vmidlle add_avail">
+							        									<a class="btn btn-flat btn-primary addDailyAvail" id="addDailyAvail-6" ><span class="mdi-content-add" aria-hidden="true"></span>Add </a>
+							        								</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group" id="dailyAvailabilities-6">
+															<div class="sub">
+																<div class="row" id="d6-req0-av0">
+																	<div class="col-md-2">
+																		<label for="startTime-d6-r0-av0">Start Time</label>
+																		<select class="form-control" id="startTime-d6-r0-av0" name="dayRequests[6][availability][0][startTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,22,13,30">1.30 pm</option>
+														                    <option value="2015,0,22,14,00">2.00 pm</option>
+														                    <option value="2015,0,22,14,30">2.30 pm</option>
+														                    <option value="2015,0,22,15,00">3.00 pm</option>
+														                    <option value="2015,0,22,15,30">3.30 pm</option>
+														                    <option value="2015,0,22,16,00">4.00 pm</option>
+														                    <option value="2015,0,22,16,30">4.30 pm</option>
+														                    <option value="2015,0,22,17,00">5.00 pm</option>
+														                    <option value="2015,0,22,17,30">5.30 pm</option>
+														                    <option value="2015,0,22,18,00">6.00 pm</option>
+														                    <option value="2015,0,22,18,30">6.30 pm</option>
+														                    <option value="2015,0,22,19,00">7.00 pm</option>
+														                    <option value="2015,0,22,19,30">7.30 pm</option>
+														                    <option value="2015,0,22,20,00">8.00 pm</option>
+														                    <option value="2015,0,22,20,30">8.30 pm</option>
+														                    <option value="2015,0,22,21,00">9.00 pm</option>
+														                </select>
+																	</div>
+																	<div class="col-md-2">
+																		<label for="endTime-d6-r0-av0">End Time</label>
+																		<select class="form-control" id="endTime-d6-r0-av0" name="dayRequests[6][availability][0][endTime]">
+																			<option value="0">  ---  </option>
+														                    <option value="2015,0,22,14,30">2.30 pm</option>
+														                    <option value="2015,0,22,15,00">3.00 pm</option>
+														                    <option value="2015,0,22,15,30">3.30 pm</option>
+														                    <option value="2015,0,22,16,00">4.00 pm</option>
+														                    <option value="2015,0,22,16,30">4.30 pm</option>
+														                    <option value="2015,0,22,17,00">5.00 pm</option>
+														                    <option value="2015,0,22,17,30">5.30 pm</option>
+														                    <option value="2015,0,22,18,00">6.00 pm</option>
+														                    <option value="2015,0,22,18,30">6.30 pm</option>
+														                    <option value="2015,0,22,19,00">7.00 pm</option>
+														                    <option value="2015,0,22,19,30">7.30 pm</option>
+														                    <option value="2015,0,22,20,00">8.00 pm</option>
+														                    <option value="2015,0,22,20,30">8.30 pm</option>
+														                    <option value="2015,0,22,21,00">9.00 pm</option>
+														                    <option value="2015,0,22,21,30">9.30 pm</option>
+														                    <option value="2015,0,22,22,00">10.00 pm</option>
+														                </select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-2">
+																	<label for="backup-d6-r0">Backup Day</label>
+																	<select name="dayRequests[6][backUp]">
+																		<option>No</option>
+																		<option>Yes</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+			        					</div>
+		        					</div>
+								</div>
+    						</div>
+    					</div>
+					</div>
+    			</fieldset>
+    			<div class="col-md-2 col-md-offset-10 right">
+    				<button class="btn btn-primary btn-lg" type="submit">Submit</button>
+    			</div>
+			</form>
+		</div>
+		<% } else { %>
+		<div class="container">
+			<h1>Oops... only registered users could use this feature</h1>
+			<h2>Please choose one of the below options</h2>
+			<div class="row">
+				<div class="col-md-6 rightify">
+					<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+				</div>
+				<div class="col-md-6 leftify">
+					<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+				</div>
+			</div>
+		</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadScripts %>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+	</head>
+
+	<body>
+		<h1><%= title %></h1>
+
+		<% if (userFullName) { %>
+			<h2>Admin: <%= userFullName %></h2>
+			<a href="/signout">Sign out</a>
+			<br><br><br>
+
+			<form action="/students/add_new" method="post">
+				<div>
+					<label>First Name:</label>
+					<input type="text" name="firstName" value="John" /><br>
+					<label>Last Name:</label>
+					<input type="text" name="lastName" value="Vavouras" /><br>
+					<label>Phone 1:</label>
+					<input type="text" name="phone[0][number]" value="111111" />
+					<input type="text" name="phone[0][phoneType]" value="home" /><br>
+					<label>Phone 2:</label>
+					<input type="text" name="phone[1][number]" value="222222" />
+					<input type="text" name="phone[1][phoneType]" value="cell" /><br>
+					<label>Email:</label>
+					<input type="text" name="email" value="johnv@example.com" /><br>
+					<label>School:</label>
+					<input type="text" name="school" value="5490dc2a9e4bf69531aa9eab" /><br>
+				</div>
+				<br><br><br><br>
+
+				<div>
+					<label>Parent 1:</label><br>
+					<input type="text" name="parent[0][firstName]" value="Jack"/><br>
+					<input type="text" name="parent[0][lastName]" value="Vavouras"/><br>
+					<input type="text" name="parent[0][email]" value="jackv@example.com"/><br>
+					<input type="text" name="parent[0][phone][0][number]" value="333333"/>
+					<input type="text" name="parent[0][phone][0][phoneType]" value="cell" /><br>
+					<input type="text" name="parent[0][phone][1][number]" value="444444"/>
+					<input type="text" name="parent[0][phone][1][phoneType]" value="work" /><br>
+				</div>
+				<div>
+					<label>Parent 2:</label><br>
+					<input type="text" name="parent[1][firstName]" value="Jenny"/><br>
+					<input type="text" name="parent[1][lastName]" value="Vavoura"/><br>
+					<input type="text" name="parent[1][email]" value="jennyv@example.com"/><br>
+					<input type="text" name="parent[1][phone][0][number]" value="555555"/>
+					<input type="text" name="parent[1][phone][0][phoneType]" value="cell" /><br>
+					<input type="text" name="parent[1][phone][1][number]" value="666666"/>
+					<input type="text" name="parent[1][phone][1][phoneType]" value="work" /><br>
+				</div>
+				<br><br><br><br>
+
+				<div>
+					<label>Subject Request 1:</label><br>
+					<input type="text" name="subjectRequest[0][subject]" value="Algebra"/><br>
+					<input type="text" name="subjectRequest[0][teacher]" value="Jack Pena"/><br>
+					<input type="date" name="subjectRequest[0][examDate]" value="January 22, 2014"/><br>
+					<input type="number" name="subjectRequest[0][hoursRequested]" value="4"/><br>
+					<input type="text" name="subjectRequest[0][requestedTutor]" value="I don't have a regular tutor" /><br>
+				</div>
+				<div>
+					<label>Subject Request 2:</label><br>
+					<input type="text" name="subjectRequest[1][subject]" value="Physics"/><br>
+					<input type="text" name="subjectRequest[1][teacher]" value="Jack Pena"/><br>
+					<input type="date" name="subjectRequest[1][examDate]" value="January 23, 2014"/><br>
+					<input type="number" name="subjectRequest[1][hoursRequested]" value="2"/><br>
+					<input type="text" name="subjectRequest[1][requestedTutor]" value="I don't have a regular tutor" /><br><br>
+				</div>
+
+				<div>
+					<label>Comments:</label><br>
+					<input type="text" name="comments" value="Book 3, guide"/><br>
+					<br><br><br>
+				</div>
+
+				<input type="submit" value="Add new student" />
+
+			</form>
+		<% } else { %>
+			<a href="/signup">Signup</a>
+			<a href="/signin">Signin</a>
+		<% } %>
+	</body>
+</html>

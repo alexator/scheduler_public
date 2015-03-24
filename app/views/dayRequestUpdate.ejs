@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<br>
+
+		<a href="/signout">Sign out</a><br><br>
+
+		<form action="/students/<%=student._id%>/dayRequests/<%=dayRequest._id%>/update" method="post">
+			<div>
+				<%= 'Student name:   ' + student.fullName %><br><br>
+				<label>Subject: </label>
+				<input type="text" name="subject" value="<%= dayRequest.subject %>" /> <br>
+				<label>Session: </label>
+				<input type="text" name="session" value="<%= dayRequest.session %>" /> <br>
+				<label>Hours requested: </label>
+				<input type="number" name="hoursRequested" value="<%= dayRequest.hoursRequested %>" /> <br><br><br>
+				
+				<label>Availability</label><br><br>
+				<% dayRequest.availability.forEach ( function (avail, index) { %>
+					<label>From: </label>
+					<input type="date" name="availability[<%index%>][startTime]" value="<%= dayRequest.availability[index].startTime %>" /> <br>
+					<label>To: </label>
+					<input type="date" name="availability[<%index%>][endTime]" value="<%= dayRequest.availability[index].endTime %>" /> <br><br>
+				<% }) %>
+
+				<label>Backup Days</label>
+				<% dayRequest.backupDays.forEach ( function (backup, index) { %>
+					<input type="date" name="backupDays[<%index%>]" value="<%= dayRequest.backupDays[index] %>" />
+				<% }) %>
+
+			</div>
+
+			<br><br>
+			<input type="submit" value="Update student details" />
+
+		</form>
+
+	</body>
+</html>

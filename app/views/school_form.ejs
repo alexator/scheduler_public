@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+
+	<body>
+		<% if (user) { %>
+			<% include ../views/partials/nav_bar %>
+			<div class="container-fluid">
+				<form action="/schools/add_new" method="post">
+				<div>
+					<label>School Name:</label>
+					<input type="text" name="name" value="Ilioupoli"/>
+				</div>
+				<div>
+					<label>Subject 1:</label><br>
+					<label>Name: </label>
+					<input type="text" name="subjects[0][name]" value="Math" /><br>
+					<label>Teacher 1: </label>
+					<input type="text" name="subjects[0][teacher][0][name]" value="John White" /><br>
+					<label>Teacher 2: </label>
+					<input type="text" name="subjects[0][teacher][1][name]" value="Jack Duffus" /><br><br>
+
+					<label>Subject 2:</label><br>
+					<label>Name: </label>
+					<input type="text" name="subjects[1][name]" value="Physics" /><br>
+					<label>Teacher 1: </label>
+					<input type="text" name="subjects[1][teacher][0][name]" value="Rob Alexander" /><br>
+					<label>Teacher 2: </label>
+					<input type="text" name="subjects[1][teacher][1][name]" value="Chris Power" /><br><br>
+				</div>
+				
+
+				<input type="submit" value="Add new school" />
+				</form>
+			</div>
+		<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadSchedulingScripts %>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+	<body>
+	<% if(user) { %>
+		<% include ../views/partials/nav_bar %>
+		<div class="container-fluid">
+			<div class="user_timezone" id="<%=user.timezone%>"  style="display:none"></div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-1">
+						<h3>Schedules</h3>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">Daily Program</h3>
+			    </div>
+			    <div class="panel-body">
+			        <div class="form-group">
+						<div class="row" id="filters">
+							<div class="col-md-2 col-md-offset-7">
+								<label for="date">Date</label>
+								<select class="form-control" id="date">
+									<option value="0">Please select a day</option>
+									<option value="January 16, 2015">Friday, January 16th</option>
+									<option value="January 17, 2015">Saturday, January 17th</option>
+									<option value="January 18, 2015">Sunday, January 18th</option>
+									<option value="January 19, 2015">Monday, January 19th</option>
+									<option value="January 20, 2015">Tuesday, January 20th</option>
+									<option value="January 21, 2015">Wednesday, January 21st</option>
+									<option value="January 22, 2015">Thursday, January 22nd</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<label for="schoolMenu">Tutor</label>
+								<select class="form-control" id="tutorMenu">
+									<option value="0">Please select a tutor</option>
+									<% tutors.forEach ( function (tutor, index) { %>
+										<option value="<%=tutor.id%>"> <%=tutor.firstName%> </option>
+									<% }) %>
+								</select>
+							</div>
+							<div class="col-md-1">
+								<a class="btn btn-flat btn-success" id="refresh"><span aria-hidden="true" class="mdi-action-done"></span> Apply</a>
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="form-group">
+						<div class="row" id="program_table">
+							<div class="col-md-12">
+								<div class="tutor_schedule">
+								<table class="table table-striped table-bordered table-hover">
+								    <thead>
+								        <tr>
+								            <th>Hours</th>
+								        </tr>
+								    </thead>
+								    <tbody>
+								    	<tr id="row-1">
+								            <td id="hour_fraction-1-0" class="row_num"></td>
+								            <td id="element-1-1"></td>
+								            <td id="element-1-2"></td>
+								            <td id="element-1-3"></td>
+								            <td id="element-1-4"></td>
+								            <td id="element-1-5"></td>
+								            <td id="element-1-6"></td>
+									    </tr>
+									    <tr id="row-2">
+								            <td id="hour_fraction-2-0" class="row_num"></td>
+								            <td id="element-2-1"></td>
+								            <td id="element-2-2"></td>
+								            <td id="element-2-3"></td>
+								            <td id="element-2-4"></td>
+								            <td id="element-2-5"></td>
+								            <td id="element-2-6"></td>
+									    </tr>
+									    <tr id="row-3">
+								            <td id="hour_fraction-3-0" class="row_num"></td>
+								            <td id="element-3-1"></td>
+								            <td id="element-3-2"></td>
+								            <td id="element-3-3"></td>
+								            <td id="element-3-4"></td>
+								            <td id="element-3-5"></td>
+								            <td id="element-3-6"></td>
+									    </tr>
+								    </tbody>
+								</table>
+							</div>
+								<a href="javascript:void(0)" id="pdf" class="print">Download Program</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% } else { %>
+			<div class="container-fluid">
+				<h1>Oops... only registered users could use this feature</h1>
+				<h2>Please choose one of the below options</h2>
+				<div class="row">
+					<div class="col-md-6 rightify">
+						<a href="/signup" class="btn btn-primary btn-lg">Sign Up</a>
+					</div>
+					<div class="col-md-6 leftify">
+						<a href="/signin" class="btn btn-primary btn-lg">Sign In</a>
+					</div>
+				</div>
+			</div>
+		<% } %>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadProgramScripts %>
+	</body>
+</html>

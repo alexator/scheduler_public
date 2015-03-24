@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title><%= title %></title>
+	</head>
+
+	<body>
+		<h1><%= title %></h1>
+		<br>
+		<% if (userFullName) { %>
+			<h2>Admin: <%= userFullName %></h2>
+			<a href="/signout">Sign out</a>
+			<form action="/schools"<%schoolId%> method="put">
+			<div>
+				<label>New School Name:</label>
+				<input type="text" name="name" />
+			</div>
+			<input type="submit" value="Update name" />
+		</form>
+		<% } else { %>
+			<a href="/signup">Signup</a>
+			<a href="/signin">Signin</a>
+		<% } %>
+	</body>
+</html>

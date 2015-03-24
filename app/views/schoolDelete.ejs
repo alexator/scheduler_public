@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+	</head>
+
+	<body>
+		<h1><%= title %></h1>
+		<br>
+
+		<a href="/signout">Sign out</a><br><br>
+
+		<form action="/schools/<%=school._id%>/delete" method="post">
+			
+			<div>
+				<span><%= 'Delete school ' + school.name + ' ?'%></span>
+			</div>
+			<input type="submit" value="Delete" />
+
+		</form>
+
+	</body>
+</html>

@@ -1,0 +1,10 @@
+{
+	"globals": {
+	    "$": false,
+	    "jQuery": false
+	},
+
+	"browser" : true,
+	"devel" : true,
+	"strict" : true
+}

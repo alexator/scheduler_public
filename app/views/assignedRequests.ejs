@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- the title is an attribute that we can pass dynamically data from the controller  -->
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<br>
+		<% if (userFullName) { %>
+			<h2>Admin: <%= userFullName %></h2>
+			<a href="/signout">Sign out</a>
+		<% } else { %>
+			<a href="/signup">Signup</a>
+			<a href="/signin">Signin</a>
+		<% } %>
+	</body>
+</html>

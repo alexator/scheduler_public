@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../views/partials/head %>
+	</head>
+	<body>
+		<div class="container">
+			<% if(true) { %>
+				<h1>Still in beta</h1>
+				<br>
+				<p>This application does not support user registration yet! Stay with us</p>
+			<% } else { %>
+				
+				<% for(var i in messages) { %>
+					<div class="flash"><%= messages[i] %></div>
+				<% } %>
+				<h1>Signup</h1>
+				<br>
+				<form action="/signup" method="post">
+					<div>
+						<label>First Name:</label>
+						<input type="text" name="firstName" />
+					</div>
+					<div>
+						<label>Last Name:</label>
+						<input type="text" name="lastName" />
+					</div>
+					<div>
+						<label>Email:</label>
+						<input type="text" name="email" />
+					</div>
+					<div>
+						<label>Username:</label>
+						<input type="text" name="username" />
+					</div>
+					<div>
+						<label>Password:</label>
+						<input type="password" name="password" />
+					</div>
+					<input type="hidden" name="timezone" id="timezone">
+					<div>
+						<input type="submit" value="Sign up" />
+					</div>
+				</form>
+			<% } %>
+		</div>
+		<footer class="footer">
+			<div class="list-group-separator"></div>
+			<% include ../views/partials/footer %>
+		</footer>
+		<% include ../views/partials/loadScripts %>
+		<script type="text/javascript" src="/lib/timezone-detect/jstz.min.js"></script>
+		<script type="text/javascript" src="../../js/timezone_detection.js"></script>
+	</body>
+</html>
